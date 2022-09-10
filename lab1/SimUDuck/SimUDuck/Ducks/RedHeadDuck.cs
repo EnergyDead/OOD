@@ -7,6 +7,6 @@ namespace SimUDuck.Ducks;
 
 public class RedHeadDuck : Duck
 {
-    public RedHeadDuck() : base(new FlyWithWings(new FlightCounter()), new Quack(), new Minuet())
+    public RedHeadDuck() : base(new FlyWithWings(), new Quack(), new Minuet())
     { }
 }

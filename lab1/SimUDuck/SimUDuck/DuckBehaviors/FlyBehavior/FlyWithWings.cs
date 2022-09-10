@@ -6,9 +6,9 @@ public class FlyWithWings : IFlyBehavior
 {
     readonly IFlyCounterBehavior _flyCounterBehavior;
 
-    public FlyWithWings(IFlyCounterBehavior flyCounterBehavior)
+    public FlyWithWings()
     {
-        _flyCounterBehavior = flyCounterBehavior ?? throw new ArgumentNullException(nameof(flyCounterBehavior));
+        _flyCounterBehavior = new FlightCounter();
     }
 
     public void Fly()

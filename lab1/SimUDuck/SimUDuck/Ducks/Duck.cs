@@ -1,7 +1,6 @@
 ﻿using SimUDuck.DuckBehaviors.QuackBehavior;
 using SimUDuck.DuckBehaviors.FlyBehavior;
 using SimUDuck.DuckBehaviors.DanceBehavior;
-using SimUDuck.DuckBehaviors.FlyCounterBehavior;
 
 namespace SimUDuck.Ducks;
 
@@ -13,7 +12,7 @@ public class Duck
 
     public Duck()
     {
-        _flyBehavior = new FlyWithWings(new FlightCounter());
+        _flyBehavior = new FlyWithWings();
         _quackBehavior = new Quack();
         _danceBehavior = new Flex();
     }

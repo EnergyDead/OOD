@@ -6,6 +6,6 @@ namespace SimUDuck.Ducks;
 
 public class DecoyDuck : Duck
 {
-    public DecoyDuck() : base(new FlyNoWay(), new Quack(), new DanceNoWay())
+    public DecoyDuck() : base(new FlyNoWay(), new MuteQuack(), new DanceNoWay())
     { }
 }
