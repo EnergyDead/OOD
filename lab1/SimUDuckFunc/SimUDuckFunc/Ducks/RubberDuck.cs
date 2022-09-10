@@ -4,6 +4,11 @@ namespace SimUDuckFunc.Ducks;
 
 public class RubberDuck : Duck
 {
-    public RubberDuck() : base(FlyBehavior.FlyNoWay, DanceBehavior.DanceNoWay, QuackBehavior.Squeak)
+    public RubberDuck() : base(FlyBehaviors.FlyNoWay, DanceBehaviors.DanceNoWay, QuackBehaviors.Squeak)
     { }
+
+    public override void Display()
+    {
+        Console.WriteLine("I`m RubberDuck.");
+    }
 }

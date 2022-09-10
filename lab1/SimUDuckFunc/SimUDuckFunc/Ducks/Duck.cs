@@ -1,16 +1,36 @@
-﻿namespace SimUDuckFunc.Ducks;
+﻿using SimUDuckFunc.DuckBehaviors;
+
+namespace SimUDuckFunc.Ducks;
 
 public class Duck
 {
-    readonly Action _flyBehavior;
-    readonly Action _danceBehavior;
-    readonly Action _quackBehavior;
+    Action _flyBehavior;
+    Action _danceBehavior;
+    Action _quackBehavior;
+
+    public Action FlyBehavior
+    {
+        get => _flyBehavior;
+        set => _flyBehavior = value ?? throw new ArgumentNullException();
+    }
+
+    public Action DanceBehavior
+    {
+        get => _danceBehavior;
+        set => _danceBehavior = value ?? throw new ArgumentNullException();
+    }
+
+    public Action QuackBehavior
+    {
+        get => _quackBehavior;
+        set => _quackBehavior = value ?? throw new ArgumentNullException();
+    }
 
     public Duck()
     {
-        _flyBehavior = () => Console.WriteLine("Fly");
-        _danceBehavior = () => Console.WriteLine("Flex");
-        _quackBehavior = () => Console.WriteLine("Quack");
+        _flyBehavior = FlyBehaviors.FlyWithWings;
+        _danceBehavior = DanceBehaviors.Dance;
+        _quackBehavior = QuackBehaviors.Quack;
     }
 
     public Duck(
@@ -18,9 +38,9 @@ public class Duck
         Action danceBehavior,
         Action quackBehavior)
     {
-        _flyBehavior = flyBehavior;
-        _danceBehavior = danceBehavior;
-        _quackBehavior = quackBehavior;
+        _flyBehavior = flyBehavior ?? throw new ArgumentNullException(nameof(flyBehavior));
+        _danceBehavior = danceBehavior ?? throw new ArgumentNullException(nameof(danceBehavior));
+        _quackBehavior = quackBehavior ?? throw new ArgumentNullException(nameof(quackBehavior));
     }
 
     public void Dance()
@@ -45,6 +65,6 @@ public class Duck
 
     public virtual void Display()
     {
-        Console.WriteLine("Show yourself");
+        Console.WriteLine("I`m simple duck.");
     }
 }

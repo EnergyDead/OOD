@@ -4,6 +4,11 @@ namespace SimUDuckFunc.Ducks;
 
 public class DecoyDuck : Duck
 {
-    public DecoyDuck() : base(FlyBehavior.FlyNoWay, DanceBehavior.DanceNoWay, QuackBehavior.Quack)
+    public DecoyDuck() : base(FlyBehaviors.FlyNoWay, DanceBehaviors.DanceNoWay, QuackBehaviors.Quack)
     { }
+    public override void Display()
+    {
+        Console.WriteLine("I`m DecoyDuck.");
+    }
 }
+

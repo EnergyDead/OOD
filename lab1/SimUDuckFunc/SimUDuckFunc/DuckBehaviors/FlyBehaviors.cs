@@ -1,6 +1,6 @@
 ﻿namespace SimUDuckFunc.DuckBehaviors;
 
-public class FlyBehavior
+public class FlyBehaviors
 {
     public static readonly Action FlyWithWings = delegate ()
     {

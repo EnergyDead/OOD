@@ -4,6 +4,11 @@ namespace SimUDuckFunc.Ducks;
 
 public class MallardDuck : Duck
 {
-    public MallardDuck() : base(FlyBehavior.FlyWithWings, DanceBehavior.Waltz, QuackBehavior.Quack)
+    public MallardDuck() : base(FlyBehaviors.FlyWithWings, DanceBehaviors.Waltz, QuackBehaviors.Quack)
     { }
+
+    public override void Display()
+    {
+        Console.WriteLine("I`m MallardDuck.");
+    }
 }

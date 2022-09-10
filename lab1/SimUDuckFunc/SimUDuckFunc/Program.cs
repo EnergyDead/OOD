@@ -11,11 +11,10 @@ List<Duck> ducks = new()
 
 foreach (Duck duck in ducks)
 {
-    Console.WriteLine($"{duck.GetType()} can perform:");
-    duck.Dance();
+    duck.Display();
+    duck.Swim();
     duck.Quack();
     duck.Fly();
-    duck.Swim();
-    duck.Display();
+    duck.Dance();
     Console.WriteLine();
 }

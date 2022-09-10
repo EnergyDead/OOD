@@ -1,6 +1,6 @@
 ﻿namespace SimUDuckFunc.DuckBehaviors;
 
-public class DanceBehavior
+public class DanceBehaviors
 {
     public static readonly Action Dance = () => Console.WriteLine("Dance");
     public static readonly Action DanceNoWay = () => Console.WriteLine("Can`t dance");
