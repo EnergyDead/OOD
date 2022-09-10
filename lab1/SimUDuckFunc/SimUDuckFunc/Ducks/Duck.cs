@@ -45,17 +45,17 @@ public class Duck
 
     public void Dance()
     {
-        _danceBehavior.Invoke();
+        _danceBehavior();
     }
 
     public void Quack()
     {
-        _quackBehavior.Invoke();
+        _quackBehavior();
     }
 
     public void Fly()
     {
-        _flyBehavior.Invoke();
+        _flyBehavior();
     }
 
     public virtual void Swim()
