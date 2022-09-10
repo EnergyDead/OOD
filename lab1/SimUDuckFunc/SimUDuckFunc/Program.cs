@@ -12,6 +12,8 @@ List<Duck> ducks = new()
 ducks[0].Fly();
 ducks[0].Fly();
 
+ducks[0].QuackBehavior = () => { Console.WriteLine("Hi"); };
+
 foreach (Duck duck in ducks)
 {
     duck.Display();
