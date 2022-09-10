@@ -11,24 +11,24 @@ public class Duck
     public Action FlyBehavior
     {
         get => _flyBehavior;
-        set => _flyBehavior = value ?? throw new ArgumentNullException();
+        set => _flyBehavior = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     public Action DanceBehavior
     {
         get => _danceBehavior;
-        set => _danceBehavior = value ?? throw new ArgumentNullException();
+        set => _danceBehavior = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     public Action QuackBehavior
     {
         get => _quackBehavior;
-        set => _quackBehavior = value ?? throw new ArgumentNullException();
+        set => _quackBehavior = value ?? throw new ArgumentNullException(nameof(value));
     }
 
     public Duck()
     {
-        _flyBehavior = FlyBehaviors.FlyWithWings;
+        _flyBehavior = FlyBehaviors.FlyWithWings();
         _danceBehavior = DanceBehaviors.Dance;
         _quackBehavior = QuackBehaviors.Quack;
     }

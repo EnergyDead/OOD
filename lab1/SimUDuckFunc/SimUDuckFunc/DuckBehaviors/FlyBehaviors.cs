@@ -2,13 +2,17 @@
 
 public class FlyBehaviors
 {
-    public static readonly Action FlyWithWings = delegate ()
+    public static Action FlyWithWings()
     {
-        Console.WriteLine("Fly");
-    };
+        int flightsAmount = 0;
 
-    public static readonly Action FlyNoWay = delegate ()
-    {
-        Console.WriteLine("Can`t fly");
-    };
+        return () =>
+        {
+            ++flightsAmount;
+            Console.WriteLine($"Fly");
+            Console.WriteLine($"Flight number:{flightsAmount}");
+        };
+    }
+
+    public static void FlyNoWay() => Console.WriteLine("Can`t fly");
 }

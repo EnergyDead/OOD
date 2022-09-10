@@ -9,6 +9,9 @@ List<Duck> ducks = new()
     new RedHeadDuck()
 };
 
+ducks[0].Fly();
+ducks[0].Fly();
+
 foreach (Duck duck in ducks)
 {
     duck.Display();
