@@ -6,9 +6,9 @@ public class StatsDisplay : IObserver<WeatherInfo>
 {
     private readonly List<MeasurementStatistic> _statistics = new()
     {
-        new MeasurementStatistic("Temperature", wi => wi.Temperature),
-        new MeasurementStatistic("Humidity", wi => wi.Humidity),
-        new MeasurementStatistic("Pressure", wi => wi.Pressure),
+        new MeasurementStatistic(WeatherMeasure.Temperature, wi => wi.Temperature),
+        new MeasurementStatistic(WeatherMeasure.Humidity, wi => wi.Humidity),
+        new MeasurementStatistic(WeatherMeasure.Pressure, wi => wi.Pressure),
     };
 
     public void Update(WeatherInfo data)
@@ -25,7 +25,7 @@ public class StatsDisplay : IObserver<WeatherInfo>
     class MeasurementStatistic
     {
         private readonly Func<WeatherInfo, double> _extractor;
-        private readonly string _name;
+        private readonly WeatherMeasure _weatherMeasure;
         private double _minimal;
         private double _maximal;
         private double _total;
@@ -33,9 +33,9 @@ public class StatsDisplay : IObserver<WeatherInfo>
 
         public double Avarage => _accCount == 0 ? 0 : _total / _accCount;
 
-        public MeasurementStatistic(string name, Func<WeatherInfo, double> extractor)
+        public MeasurementStatistic(WeatherMeasure weatherMeasure, Func<WeatherInfo, double> extractor)
         {
-            _name = name;
+            _weatherMeasure = weatherMeasure;
             _extractor = extractor;
         }
 
@@ -54,9 +54,9 @@ public class StatsDisplay : IObserver<WeatherInfo>
 
         public void Display()
         {
-            Console.WriteLine($"Maximal {_name}: {_maximal:0.##}");
-            Console.WriteLine($"Minimal {_name}: {_minimal:0.##}");
-            Console.WriteLine($"Avarage {_name}: {Avarage:0.##}");
+            Console.WriteLine($"Maximal {_weatherMeasure}: {_maximal:0.##}");
+            Console.WriteLine($"Minimal {_weatherMeasure}: {_minimal:0.##}");
+            Console.WriteLine($"Avarage {_weatherMeasure}: {Avarage:0.##}");
         }
     }
 }

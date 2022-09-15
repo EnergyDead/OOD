@@ -13,3 +13,10 @@ public class WeatherInfo
     public double Humidity { get; private set; }
     public double Pressure { get; private set; }
 }
+
+public enum WeatherMeasure
+{
+    Temperature,
+    Humidity,
+    Pressure
+}
