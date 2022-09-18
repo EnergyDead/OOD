@@ -6,9 +6,27 @@ namespace SimUDuck.Ducks;
 
 public class Duck
 {
-    readonly IFlyBehavior _flyBehavior;
-    readonly IQuackBehavior _quackBehavior;
-    readonly IDanceBehavior _danceBehavior;
+    IFlyBehavior _flyBehavior;
+    IQuackBehavior _quackBehavior;
+    IDanceBehavior _danceBehavior;
+
+    public IFlyBehavior FlyBehavior
+    {
+        get => _flyBehavior;
+        set => _flyBehavior = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public IQuackBehavior QuackBehavior
+    {
+        get => _quackBehavior;
+        set => _quackBehavior = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public IDanceBehavior DanceBehavior
+    {
+        get => _danceBehavior;
+        set => _danceBehavior = value ?? throw new ArgumentNullException(nameof(value));
+    }
 
     public Duck()
     {

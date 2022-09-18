@@ -2,7 +2,7 @@
 
 public class Quack : IQuackBehavior
 {
-    void IQuackBehavior.Quack()
+    void IQuackBehavior.Quack() // избавиться от IQuackBehavior.
     {
         Console.WriteLine("Quack");
     }

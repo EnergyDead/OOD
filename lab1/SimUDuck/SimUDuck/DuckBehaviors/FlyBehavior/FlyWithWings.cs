@@ -4,16 +4,12 @@ namespace SimUDuck.DuckBehaviors.FlyBehavior;
 
 public class FlyWithWings : IFlyBehavior
 {
-    readonly IFlyCounterBehavior _flyCounterBehavior;
-
-    public FlyWithWings()
-    {
-        _flyCounterBehavior = new FlightCounter();
-    }
+    private int _counterFlying = 0;
 
     public void Fly()
     {
         Console.WriteLine("Fly");
-        _flyCounterBehavior.TakeWing();
+        _counterFlying++;
+        Console.WriteLine($"Departure number: {_counterFlying}");
     }
 }
