@@ -19,7 +19,6 @@ public class StatsDisplay : IObserver<WeatherInfo>
             statistic.Display();
         }
         Console.WriteLine("---------------");
-
     }
 
     class MeasurementStatistic

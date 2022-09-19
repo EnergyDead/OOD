@@ -1,7 +1,7 @@
 ﻿using WeatherStationStandart.Observer;
 using WeatherStationStandart.Observable;
 
-var wd = new WeatherData();
+WeatherData wd = new();
 
 Display display = new();
 wd.RegisterObserver(display, 1);
