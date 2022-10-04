@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Streams": {
+      "commandName": "Project",
+      "commandLineArgs": "input.txt out.txt."
+    }
+  }
+}
