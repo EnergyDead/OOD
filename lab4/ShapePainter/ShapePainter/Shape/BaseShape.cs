@@ -1,9 +1,10 @@
 ﻿using ShapePainter.Canvas;
+using System.Drawing;
 
 namespace ShapePainter.Shape;
 
 internal abstract class BaseShape
 {
     public abstract void Draw(ICanvas canvas);
-    public ColorType Color { get; set; }
+    public Color Color { get; set; }
 }

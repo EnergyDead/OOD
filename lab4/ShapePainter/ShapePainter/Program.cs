@@ -2,9 +2,10 @@
 using ShapePainter.Canvas;
 using ShapePainter.Designer;
 using ShapePainter.Painter;
+using ShapePainter.Shape;
 
 IPainter painter = new Painter();
-IDesigner designer = new Designer();
+IDesigner designer = new Designer(new ShapeFactory());
 ICanvas canvas = new Canvas();
 
 var client = new Client(canvas, designer, painter);

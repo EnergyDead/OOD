@@ -5,12 +5,12 @@ namespace ShapePainter.Canvas;
 internal class Canvas : ICanvas
 {
     private readonly string _png = ".png";
-    private readonly Image _img;
     private readonly Pen _pen;
+    private Image _img;
 
     public Canvas()
     {
-        _img = new Bitmap(1000, 1000);
+        _img = GetNewCanvas();
         _pen = new Pen(Color.White);
 
     }
@@ -35,8 +35,14 @@ internal class Canvas : ICanvas
             g.DrawLine(_pen, from, to);
         }
     }
+
     public void SavePicture(string fileName)
     {
         _img.Save(fileName + _png);
+        _img = GetNewCanvas();
+    }
+    private Bitmap GetNewCanvas()
+    {
+        return new Bitmap(1000, 1000);
     }
 }

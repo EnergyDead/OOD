@@ -8,12 +8,14 @@ internal class Client
     private readonly ICanvas _canvas;
     private readonly IDesigner _designer;
     private readonly IPainter _painter;
+    private readonly List<string> _descriptions;
 
     public Client(ICanvas canvas, IDesigner designer, IPainter painter)
     {
         _canvas = canvas;
         _designer = designer;
         _painter = painter;
+        _descriptions = new();
     }
 
     internal void Run()
@@ -21,7 +23,7 @@ internal class Client
         Info();
         while (true)
         {
-            string command = Console.ReadLine()!;
+            string command = Console.ReadLine()!.ToLower();
             switch (command)
             {
                 case "exit":
@@ -32,20 +34,30 @@ internal class Client
                 case "paint":
                     Paint();
                     break;
+                case "clear":
+                    Clear();
+                    break;
                 default:
+                    Command(command);
                     break;
             }
         }
     }
 
+    private void Clear()
+    {
+        _descriptions.Clear();
+    }
+
     private void Paint()
     {
-        throw new NotImplementedException();
+        PictureDraft pictureDraft = _designer.CreateDraft(_descriptions);
+        _painter.DrawPicture(pictureDraft, _canvas);
     }
 
     private void Command(string command)
     {
-        throw new NotImplementedException();
+        _descriptions.Add(command);
     }
 
     private static void Info()
