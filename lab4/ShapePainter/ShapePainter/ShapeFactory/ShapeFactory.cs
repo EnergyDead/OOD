@@ -78,19 +78,27 @@ internal class ShapeFactory : IShapeFactory
         {
             throw new ApplicationException("Error when creating Triangle. Incorrect amount of arguments");
         }
+        Color color = ParseColor(arg[1]);
+        Point startPos = new Point(int.Parse(arg[2]), int.Parse(arg[3]));
+        Point vertex1 = new Point(int.Parse(arg[4]), int.Parse(arg[5]));
+        Point vertex2 = new Point(int.Parse(arg[6]), int.Parse(arg[7]));
+        Point vertex3 = new Point(int.Parse(arg[8]), int.Parse(arg[9]));
 
-        throw new NotImplementedException();
+        return new Triangle(color, startPos, vertex1, vertex2, vertex3);
     }
 
     private static BaseShape CreateRectangle(List<string> arg)
     {
-        // "Rectangle <color> <start.X> <start.Y> <point1.X> <point1.Y> <point2.X> <point2.Y>"
-        if (arg.Count != 8)
+        // "Rectangle <color> <point1.X> <point1.Y> <point2.X> <point2.Y>"
+        if (arg.Count != 6)
         {
             throw new ApplicationException("Error when creating Rectangle. Incorrect amount of arguments");
         }
+        Color color = ParseColor(arg[1]);
+        Point point1 = new Point(int.Parse(arg[2]), int.Parse(arg[3]));
+        Point point2 = new Point(int.Parse(arg[4]), int.Parse(arg[5]));
 
-        throw new NotImplementedException();
+        return new Rectangle(color, point1, point2);
     }
 
     private static Color ParseColor(string v)

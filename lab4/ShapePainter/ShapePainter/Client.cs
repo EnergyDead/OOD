@@ -21,12 +21,14 @@ internal class Client
     internal void Run()
     {
         Info();
-        while (true)
+        bool exitSignal = false;
+        while (!exitSignal)
         {
             string command = Console.ReadLine()!.ToLower();
             switch (command)
             {
                 case "exit":
+                    exitSignal = true;
                     continue;
                 case "info":
                     Info();
@@ -37,11 +39,21 @@ internal class Client
                 case "clear":
                     Clear();
                     break;
+                case "save":
+                    Save();
+                    break;
                 default:
                     Command(command);
                     break;
             }
         }
+    }
+
+    private void Save()
+    {
+        Console.Write("name the picture: ");
+        string pictureName = Console.ReadLine()!;
+        _canvas.SavePicture(pictureName);
     }
 
     private void Clear()
@@ -63,12 +75,13 @@ internal class Client
     private static void Info()
     {
         Console.WriteLine("info - show available commands");
-        Console.WriteLine("paint <sketchName> - artist draws according to the sketch of the picture from the designer");
+        Console.WriteLine("paint - artist draws according to the sketch of the picture from the designer");
+        Console.WriteLine("save - the artist gives you a picture with a given name");
         Console.WriteLine("clear - delete everything from the draft image");
         Console.WriteLine("exit - close the program");
         Console.WriteLine("Provide a design for the designer (The designer has a host size of 1000 by 1000):");
         Console.WriteLine("Triangle <color> <start.X> <start.Y> <vertex1.x> <vertex1.Y> <vertex2.x> <vertex2.Y> <vertex3.x> <vertex3.Y>");
-        Console.WriteLine("Rectangle <color> <start.X> <start.Y> <point1.X> <point1.Y> <point2.X> <point2.Y>");
+        Console.WriteLine("Rectangle <color> <point1.X> <point1.Y> <point2.X> <point2.Y>");
         Console.WriteLine("Ellipse <color> <start.X> <start.Y> <width> <height>");
         Console.WriteLine("RegularPolygon <color> <start.X> <start.Y> <vertexCount> <radius>");
     }
