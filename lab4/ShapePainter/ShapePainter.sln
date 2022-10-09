@@ -3,12 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapePainter", "ShapePainter\ShapePainter.csproj", "{25943231-B4BA-4D6C-AB35-84137D810527}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShapePainter", "ShapePainter\ShapePainter.csproj", "{25943231-B4BA-4D6C-AB35-84137D810527}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59BADC72-9142-484F-99F6-469402200B7C}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapePainterTests", "ShapePainterTests\ShapePainterTests.csproj", "{E85508D1-673E-4A87-A51A-89F3CC4C91ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +22,10 @@ Global
 		{25943231-B4BA-4D6C-AB35-84137D810527}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25943231-B4BA-4D6C-AB35-84137D810527}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25943231-B4BA-4D6C-AB35-84137D810527}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E85508D1-673E-4A87-A51A-89F3CC4C91ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E85508D1-673E-4A87-A51A-89F3CC4C91ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E85508D1-673E-4A87-A51A-89F3CC4C91ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E85508D1-673E-4A87-A51A-89F3CC4C91ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

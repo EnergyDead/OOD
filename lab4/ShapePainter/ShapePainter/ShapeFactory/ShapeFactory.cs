@@ -2,7 +2,7 @@
 
 namespace ShapePainter.Shape;
 
-internal class ShapeFactory : IShapeFactory
+public class ShapeFactory : IShapeFactory
 {
     private static readonly Dictionary<string, Func<List<string>, BaseShape>> _shapeCreator = new()
     {
@@ -14,7 +14,7 @@ internal class ShapeFactory : IShapeFactory
 
     public BaseShape CreateShape(string description)
     {
-        List<string> descriptions = description.Split(" ").ToList();
+        List<string> descriptions = description.ToLower().Split(" ").ToList();
         string shapeType = GetNameByDescription(descriptions);
         if (_shapeCreator.ContainsKey(shapeType))
         {

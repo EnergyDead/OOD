@@ -3,10 +3,13 @@ using System.Drawing;
 
 namespace ShapePainter.Shape;
 
-internal class Rectangle : BaseShape
+public class Rectangle : BaseShape
 {
     private Point _point1;
     private Point _point2;
+
+    public Point Point1 => _point1;
+    public Point Point2 => _point2;
 
     public Rectangle(Color color,Point point1, Point point2)
     {

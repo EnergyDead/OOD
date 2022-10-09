@@ -2,7 +2,7 @@
 
 namespace ShapePainter;
 
-internal class PictureDraft
+public class PictureDraft
 {
     public List<BaseShape> Shapes { get; private set; }
 

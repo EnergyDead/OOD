@@ -2,7 +2,7 @@
 
 namespace ShapePainter.Designer;
 
-internal class Designer : IDesigner
+public class Designer : IDesigner
 {
     private readonly IShapeFactory _shapeFactory;
 

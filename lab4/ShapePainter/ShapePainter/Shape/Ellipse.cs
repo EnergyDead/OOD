@@ -3,11 +3,15 @@ using System.Drawing;
 
 namespace ShapePainter.Shape;
 
-internal class Ellipse : BaseShape
+public class Ellipse : BaseShape
 {
     private Point _start;
     private int _width;
     private int _height;
+
+    public Point Start => _start;
+    public int Width => _width;
+    public int Height => _height;
 
     public Ellipse(Color color, Point start, int width, int height)
     {

@@ -3,9 +3,10 @@ using System.Drawing;
 
 namespace ShapePainter.Shape;
 
-internal class RegularPolygon : BaseShape
+public class RegularPolygon : BaseShape
 {
     private Point[] _points;
+    public Point[] Points => _points;
 
     public RegularPolygon(Color color, Point[] points)
     {

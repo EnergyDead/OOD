@@ -1,6 +1,6 @@
 ﻿namespace ShapePainter.Shape;
 
-internal interface IShapeFactory
+public interface IShapeFactory
 {
     BaseShape CreateShape(string description);
 }

@@ -2,7 +2,7 @@
 
 namespace ShapePainter.Canvas;
 
-internal interface ICanvas
+public interface ICanvas
 {
     Color Color { set; }
     void DrawLine(Point from, Point to);
