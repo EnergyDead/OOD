@@ -80,7 +80,7 @@ internal class Client
         Console.WriteLine("clear - delete everything from the draft image");
         Console.WriteLine("exit - close the program");
         Console.WriteLine("Provide a design for the designer (The designer has a host size of 1000 by 1000):");
-        Console.WriteLine("Triangle <color> <start.X> <start.Y> <vertex1.x> <vertex1.Y> <vertex2.x> <vertex2.Y> <vertex3.x> <vertex3.Y>");
+        Console.WriteLine("Triangle <color> <vertex1.x> <vertex1.Y> <vertex2.x> <vertex2.Y> <vertex3.x> <vertex3.Y>");
         Console.WriteLine("Rectangle <color> <point1.X> <point1.Y> <point2.X> <point2.Y>");
         Console.WriteLine("Ellipse <color> <start.X> <start.Y> <width> <height>");
         Console.WriteLine("RegularPolygon <color> <points> (points - <point.X> <point.Y>)");
