@@ -58,33 +58,35 @@ internal class ShapeFactory : IShapeFactory
 
     private static BaseShape CreateRegularPolygon(List<string> arg)
     {
-        // "RegularPolygon <color> <start.X> <start.Y> <vertexCount> <radius>"
-        if (arg.Count != 6)
+        // "RegularPolygon <color> <points> (points - <point.X> <point.Y>)"
+        if (arg.Count < 2)
         {
             throw new ApplicationException("Error when creating RegularPolygon. Incorrect amount of arguments");
         }
         Color color = ParseColor(arg[1]);
-        Point startPos = new Point(int.Parse(arg[2]), int.Parse(arg[3]));
-        int vertexCount = int.Parse(arg[4]);
-        int radius = int.Parse(arg[5]);
+        List<Point> points = new();
 
-        return new RegularPolygon(color, startPos, vertexCount, radius);
+        for (int i = 2; i < arg.Count; i++)
+        {
+            points.Add(new Point(int.Parse(arg[i]), int.Parse(arg[i])));
+        }
+
+        return new RegularPolygon(color, points.ToArray());
     }
 
     private static BaseShape CreateTriangle(List<string> arg)
     {
-        // "Triangle <color> <start.X> <start.Y> <vertex1.x> <vertex1.Y> <vertex2.x> <vertex2.Y> <vertex3.x> <vertex3.Y>"
-        if (arg.Count != 10)
+        // "Triangle <color> <vertex1.x> <vertex1.Y> <vertex2.x> <vertex2.Y> <vertex3.x> <vertex3.Y>"
+        if (arg.Count != 8)
         {
             throw new ApplicationException("Error when creating Triangle. Incorrect amount of arguments");
         }
         Color color = ParseColor(arg[1]);
-        Point startPos = new Point(int.Parse(arg[2]), int.Parse(arg[3]));
-        Point vertex1 = new Point(int.Parse(arg[4]), int.Parse(arg[5]));
-        Point vertex2 = new Point(int.Parse(arg[6]), int.Parse(arg[7]));
-        Point vertex3 = new Point(int.Parse(arg[8]), int.Parse(arg[9]));
+        Point vertex1 = new Point(int.Parse(arg[2]), int.Parse(arg[3]));
+        Point vertex2 = new Point(int.Parse(arg[4]), int.Parse(arg[5]));
+        Point vertex3 = new Point(int.Parse(arg[6]), int.Parse(arg[7]));
 
-        return new Triangle(color, startPos, vertex1, vertex2, vertex3);
+        return new Triangle(color, vertex1, vertex2, vertex3);
     }
 
     private static BaseShape CreateRectangle(List<string> arg)

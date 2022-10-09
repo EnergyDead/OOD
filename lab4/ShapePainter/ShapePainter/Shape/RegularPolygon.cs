@@ -5,20 +5,17 @@ namespace ShapePainter.Shape;
 
 internal class RegularPolygon : BaseShape
 {
-    private Point _startPos;
-    private int _vertexCount;
-    private int _radius;
+    private Point[] _points;
 
-    public RegularPolygon(Color color, Point startPos, int vertexCount, int radius)
+    public RegularPolygon(Color color, Point[] points)
     {
         Color = color;
-        _startPos = startPos;
-        _vertexCount = vertexCount;
-        _radius = radius;
+        _points = points;
     }
 
     public override void Draw(ICanvas canvas)
     {
-        throw new NotImplementedException();
+        canvas.Color = Color;
+        canvas.DrawPolygon(_points);
     }
 }

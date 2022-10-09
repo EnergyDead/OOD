@@ -6,6 +6,16 @@ internal class Painter : IPainter
 {
     public void DrawPicture(PictureDraft pictureDraft, ICanvas canvas)
     {
-        pictureDraft.Shapes.ForEach(shape => shape.Draw(canvas));
+        foreach (var shape in pictureDraft.Shapes)
+        {
+            try
+            {
+                shape.Draw(canvas);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error draw {shape.GetType()}. {ex.Message}");
+            }
+        }
     }
 }

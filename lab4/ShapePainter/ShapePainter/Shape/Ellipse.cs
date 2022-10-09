@@ -5,20 +5,21 @@ namespace ShapePainter.Shape;
 
 internal class Ellipse : BaseShape
 {
-    private Point _startPos;
+    private Point _start;
     private int _width;
     private int _height;
 
-    public Ellipse(Color color, Point startPos, int width, int height)
+    public Ellipse(Color color, Point start, int width, int height)
     {
         Color = color;
-        _startPos = startPos;
+        _start = start;
         _width = width;
         _height = height;
     }
 
     public override void Draw(ICanvas canvas)
     {
-        throw new NotImplementedException();
+        canvas.Color = Color;
+        canvas.DrawEllipse(_start, _width, _height);
     }
 }

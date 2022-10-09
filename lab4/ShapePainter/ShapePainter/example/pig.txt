@@ -1,0 +1,17 @@
+ellipse red 380 400 30 30
+ellipse red 430 400 30 30
+ellipse pink 350 350 140 140
+ellipse black 300 200 50 50
+ellipse black 495 200 50 50
+ellipse pink 200 100 450 500
+ellipse pink 510 70 50 50
+ellipse pink 280 70 50 50
+ellipse pink 200 600 420 400
+triangle pink 460 700 490 730 520 700
+triangle pink 290 700 320 730 350 700
+triangle pink 460 900 490 930 520 900
+triangle pink 290 900 320 930 350 900
+paint
+save
+pig
+exit

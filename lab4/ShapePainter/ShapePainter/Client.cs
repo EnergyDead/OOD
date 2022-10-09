@@ -83,6 +83,6 @@ internal class Client
         Console.WriteLine("Triangle <color> <start.X> <start.Y> <vertex1.x> <vertex1.Y> <vertex2.x> <vertex2.Y> <vertex3.x> <vertex3.Y>");
         Console.WriteLine("Rectangle <color> <point1.X> <point1.Y> <point2.X> <point2.Y>");
         Console.WriteLine("Ellipse <color> <start.X> <start.Y> <width> <height>");
-        Console.WriteLine("RegularPolygon <color> <start.X> <start.Y> <vertexCount> <radius>");
+        Console.WriteLine("RegularPolygon <color> <points> (points - <point.X> <point.Y>)");
     }
 }
