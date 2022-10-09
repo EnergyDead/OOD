@@ -51,6 +51,7 @@ internal class Canvas : ICanvas, IDisposable
     {
         try
         {
+            _pen.Color = Color;
             _graphics.DrawPolygon(_pen, points);
         }
         catch (Exception ex)

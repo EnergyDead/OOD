@@ -1,4 +1,4 @@
-﻿using ShapePainter.Canvas;
+﻿    using ShapePainter.Canvas;
 using System.Drawing;
 
 namespace ShapePainter.Shape;
