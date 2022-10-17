@@ -1,4 +1,8 @@
 ﻿using Command;
+using Command.Document;
+using Command.Document.Item.Paragraph;
+using Command.Util;
 
-var menu = new Menu().Build();
+IDocument doc = new Document(new History());
+var menu = new Menu().Build(doc);
 menu.Run();

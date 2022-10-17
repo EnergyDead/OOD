@@ -1,4 +1,6 @@
-﻿namespace Command;
+﻿using System.Text;
+
+namespace Command;
 
 public class Menu
 {
@@ -17,17 +19,15 @@ public class Menu
     internal void Run()
     {
         var isExit = false;
-
         while (!isExit)
         {
             string command = Console.ReadLine()!;
             if (command.ToLower() == _exitCommand) break;
-
             try
             {
                 Execute(command);
             }
-            catch (ApplicationException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -36,12 +36,15 @@ public class Menu
 
     public string GetInfo()
     {
-        return "i cant help.. sry";
+        StringBuilder stringBuilder = new();
+        _menuNodes.ForEach(n => stringBuilder.AppendLine(n.ToString()));
+
+        return stringBuilder.ToString();
     }
 
     private void Execute(string command)
     {
-        MenuNode? node = _menuNodes.FirstOrDefault(mn => mn.Name == GetCommandName(command));
+        MenuNode? node = _menuNodes.FirstOrDefault(mn => mn.Name.ToLower() == GetCommandName(command).ToLower());
 
         if (node == null) throw new ApplicationException("Command not found.");
 
@@ -55,6 +58,6 @@ public class Menu
 
     private static string GetCommandDescription(string command)
     {
-        return command.Contains(' ') ? string.Empty : command[(command.IndexOf(' ')+1)..];
+        return command.Contains(' ') ? command[(command.IndexOf(' ') + 1)..] : string.Empty;
     }
 }

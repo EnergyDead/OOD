@@ -12,4 +12,9 @@ public class MenuNode
         Description = description;
         Executor = executor;
     }
+
+    public override string ToString()
+    {
+        return $"Command: {Name}. Description {Description}";
+    }
 }
