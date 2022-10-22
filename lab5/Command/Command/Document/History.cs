@@ -5,14 +5,14 @@ namespace Command.Document;
 public class History : IHistory
 {
     const int _maxCommandsQuantity = 10;
-    private readonly List<ICommand> _commands = new List<ICommand>();
-    private readonly List<ICommand> _cancelledCommands = new List<ICommand>();
+    private readonly List<ICommand> _commands = new();
+    private readonly List<ICommand> _cancelledCommands = new();
     private bool _isLocked = false;
 
     public bool CanUndo => _commands.Any();
     public bool CanRedo => _cancelledCommands.Any();
 
-    public void Add(ICommand command)
+    public virtual void Add(ICommand command)
     {
         if (_isLocked)
         {
@@ -24,7 +24,7 @@ public class History : IHistory
         RemoveOverrideCommand();
     }
 
-    public void Redo()
+    public virtual void Redo()
     {
         if (!CanRedo)
         {
@@ -39,7 +39,7 @@ public class History : IHistory
         _commands.Add(command);
     }
 
-    public void Undo()
+    public virtual void Undo()
     {
         if (!CanUndo)
         {
@@ -75,7 +75,7 @@ public class History : IHistory
 
 static class Util
 {
-    public static void RemoveLast(this List<ICommand> commands)
+    internal static void RemoveLast(this List<ICommand> commands)
     {
         commands.RemoveAt(commands.Count - 1);
     }

@@ -96,7 +96,7 @@ public class Document : IDocument
     public void Save(string path)
     {
         path = path.Replace('\\', '/');
-        if (!path.Contains('\\'))
+        if (!path.Contains('/'))
         {
             path = $"temp\\{path}";
         }

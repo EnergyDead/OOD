@@ -5,4 +5,6 @@ using Command.Util;
 
 IDocument doc = new Document(new History());
 var menu = new Menu().Build(doc);
-menu.Run();
+var aplication = new Application(menu);
+
+aplication.Run();

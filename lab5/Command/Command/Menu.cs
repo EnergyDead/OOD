@@ -5,29 +5,10 @@ namespace Command;
 public class Menu
 {
     private readonly List<MenuNode> _menuNodes = new();
-    private readonly string _exitCommand = "exit";
 
     public void AddNode(string name, string description, Action<string> action)
     {
         _menuNodes.Add(new MenuNode(name, description, action));
-    }
-
-    internal void Run()
-    {
-        var isExit = false;
-        while (!isExit)
-        {
-            string command = Console.ReadLine()!;
-            if (command.ToLower() == _exitCommand) break;
-            try
-            {
-                Execute(command);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
     }
 
     public string GetInfo()
@@ -38,7 +19,7 @@ public class Menu
         return stringBuilder.ToString();
     }
 
-    private void Execute(string command)
+    public void Execute(string command)
     {
         MenuNode? node = _menuNodes.FirstOrDefault(mn => mn.Name.ToLower() == GetCommandName(command).ToLower());
 
@@ -73,6 +54,6 @@ class MenuNode
 
     public override string ToString()
     {
-        return $"Command: {Name}. Description {Description}";
+        return $"Command: {Name}. Description: {Description}";
     }
 }
