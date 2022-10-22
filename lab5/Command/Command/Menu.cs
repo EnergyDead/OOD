@@ -7,10 +7,6 @@ public class Menu
     private readonly List<MenuNode> _menuNodes = new();
     private readonly string _exitCommand = "exit";
 
-    public void AddNode(MenuNode menuNode)
-    {
-        _menuNodes.Add(menuNode);
-    }
     public void AddNode(string name, string description, Action<string> action)
     {
         _menuNodes.Add(new MenuNode(name, description, action));
@@ -59,5 +55,24 @@ public class Menu
     private static string GetCommandDescription(string command)
     {
         return command.Contains(' ') ? command[(command.IndexOf(' ') + 1)..] : string.Empty;
+    }
+}
+
+class MenuNode
+{
+    public string Name { get; }
+    public string Description { get; }
+    public Action<string> Executor { get; set; }
+
+    public MenuNode(string name, string description, Action<string> executor)
+    {
+        Name = name;
+        Description = description;
+        Executor = executor;
+    }
+
+    public override string ToString()
+    {
+        return $"Command: {Name}. Description {Description}";
     }
 }
