@@ -10,18 +10,18 @@ public static class MenuBilder
     public static Menu Build(this Menu menu, IDocument doc)
     {
         Setup menuSetup = new(doc);
-        menu.AddNode("Help", "Print <Help> to show commands info", _ => Console.WriteLine(menu.GetInfo()));
-        menu.AddNode("List", "Print <List> to show info about names and a list of document elements", menuSetup.ListCommandExecutor);
-        menu.AddNode("Undo", "Print <Undo> to undo previous command", menuSetup.UndoCommandExecutor);
-        menu.AddNode("Redo", "Print <Redo> to redo command", menuSetup.RedoCommandExecutor);
-        menu.AddNode("Save", "Print <Save> <path> to save document", menuSetup.SaveCommandExecutor);
-        menu.AddNode("SetTitle", "Print <SetTitle> <title> to determine the name of your document", menuSetup.SetTitleCommandExecutor);
-        menu.AddNode("InsertParagraph", "Print <InsertParagraph> <position|end> <text> to add a paragraph to a document", menuSetup.InsertParagraphCommandExecutor);
-        menu.AddNode("ReplaceText", "Print <ReplaceText> <position> <text> to replace selected text from paragraph", menuSetup.ReplaceTextCommandExecutor);
-        menu.AddNode("InsertImage", "Print <InsertImage> <position|end> <weight> <height> <path> to insert image to document", menuSetup.InsertImageCommandExecutor);
-        menu.AddNode("ResizeImage", "Print <ResizeImage> <position> <weight> <height> to resize image", menuSetup.ResizeImageCommandExecutor);
-        menu.AddNode("DeleteItem", "Print <DeleteItem> <position> to delete item on position", menuSetup.DeleteItemCommandExecutor);
-        menu.AddNode("Exit", "Print <Exit> to close program", _ => { });
+        menu.AddShortcut("Help", "Print <Help> to show commands info", _ => Console.WriteLine(menu.GetInfo()));
+        menu.AddShortcut("List", "Print <List> to show info about names and a list of document elements", menuSetup.ListCommandExecutor);
+        menu.AddShortcut("Undo", "Print <Undo> to undo previous command", menuSetup.UndoCommandExecutor);
+        menu.AddShortcut("Redo", "Print <Redo> to redo command", menuSetup.RedoCommandExecutor);
+        menu.AddShortcut("Save", "Print <Save> <path> to save document", menuSetup.SaveCommandExecutor);
+        menu.AddShortcut("SetTitle", "Print <SetTitle> <title> to determine the name of your document", menuSetup.SetTitleCommandExecutor);
+        menu.AddShortcut("InsertParagraph", "Print <InsertParagraph> <position|end> <text> to add a paragraph to a document", menuSetup.InsertParagraphCommandExecutor);
+        menu.AddShortcut("ReplaceText", "Print <ReplaceText> <position> <text> to replace selected text from paragraph", menuSetup.ReplaceTextCommandExecutor);
+        menu.AddShortcut("InsertImage", "Print <InsertImage> <position|end> <weight> <height> <path> to insert image to document", menuSetup.InsertImageCommandExecutor);
+        menu.AddShortcut("ResizeImage", "Print <ResizeImage> <position> <weight> <height> to resize image", menuSetup.ResizeImageCommandExecutor);
+        menu.AddShortcut("DeleteItem", "Print <DeleteItem> <position> to delete item on position", menuSetup.DeleteItemCommandExecutor);
+        menu.AddShortcut("Exit", "Print <Exit> to close program", _ => { });
 
         return menu;
     }

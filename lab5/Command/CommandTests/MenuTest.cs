@@ -20,7 +20,7 @@ public class MenuTest
         string command = "foo";
         bool isExecute = false;
 
-        _menu.AddNode(command, "", (e) => isExecute = true);
+        _menu.AddShortcut(command, "", (e) => isExecute = true);
 
         // Act
         _menu.Execute(command);
@@ -44,7 +44,7 @@ public class MenuTest
     {
         // Arrange
         string command = "foo";
-        _menu.AddNode(command, "", (_) => { throw new ApplicationException(); });
+        _menu.AddShortcut(command, "", (_) => { throw new ApplicationException(); });
 
         // Act
         // Assert
@@ -56,8 +56,8 @@ public class MenuTest
     {
         // Arrange
         string expectedInfo = "Command: foo1. Description: foo1 desc\r\nCommand: foo2. Description: foo2 desc\r\n";
-        _menu.AddNode("foo1", "foo1 desc", (_) => { });
-        _menu.AddNode("foo2", "foo2 desc", (_) => { });
+        _menu.AddShortcut("foo1", "foo1 desc", (_) => { });
+        _menu.AddShortcut("foo2", "foo2 desc", (_) => { });
 
         // Act
         string info = _menu.GetInfo();

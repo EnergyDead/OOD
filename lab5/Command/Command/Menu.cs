@@ -4,28 +4,28 @@ namespace Command;
 
 public class Menu
 {
-    private readonly List<MenuNode> _menuNodes = new();
+    private readonly List<Shortcut> _shortcuts = new();
 
-    public void AddNode(string name, string description, Action<string> action)
+    public void AddShortcut(string name, string description, Action<string> action)
     {
-        _menuNodes.Add(new MenuNode(name, description, action));
+        _shortcuts.Add(new Shortcut(name, description, action));
     }
 
     public string GetInfo()
     {
         StringBuilder stringBuilder = new();
-        _menuNodes.ForEach(n => stringBuilder.AppendLine(n.ToString()));
+        _shortcuts.ForEach(n => stringBuilder.AppendLine(n.ToString()));
 
         return stringBuilder.ToString();
     }
 
     public void Execute(string command)
     {
-        MenuNode? node = _menuNodes.FirstOrDefault(mn => mn.Name.ToLower() == GetCommandName(command).ToLower());
+        Shortcut? shortcut = _shortcuts.FirstOrDefault(mn => mn.Name.ToLower() == GetCommandName(command).ToLower());
 
-        if (node == null) throw new ApplicationException("Command not found.");
+        if (shortcut == null) throw new ApplicationException("Command not found.");
 
-        node.Executor(GetCommandDescription(command));
+        shortcut.Executor(GetCommandDescription(command));
     }
 
     private static string GetCommandName(string command)
@@ -39,13 +39,13 @@ public class Menu
     }
 }
 
-class MenuNode
+class Shortcut
 {
     public string Name { get; }
     public string Description { get; }
     public Action<string> Executor { get; set; }
 
-    public MenuNode(string name, string description, Action<string> executor)
+    public Shortcut(string name, string description, Action<string> executor)
     {
         Name = name;
         Description = description;
