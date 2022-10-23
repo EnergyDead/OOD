@@ -1,6 +1,7 @@
 ﻿using ImageClass = Command.Document.Item.Image.Image;
 using Command.Document.Item.Image;
 using Xunit;
+using Command.Document.Item;
 
 namespace CommandTests.Document.Item.Image;
 
@@ -13,7 +14,7 @@ public class ImageTest
         IImage image = new ImageClass("", "", 1, 1);
         int width = 300;
         int height = 300;
-        
+
         // Act
         image.Resize(width, height);
 
@@ -53,5 +54,19 @@ public class ImageTest
 
         // Assert
         Assert.Equal(expectedDesc, imageDesc);
+    }
+
+    [Fact]
+    public void ToHtml_Image()
+    {
+        // Arrange
+        string expectedHtml = "<img src=\"foo.png\" width=\"1\" height=\"1\">";
+        IItem item = new ImageClass("foo", "png", 1, 1);
+
+        // Act
+        string imageHtml = item.ToHtml("foo.png");
+
+        // Assert
+        Assert.Equal(expectedHtml, imageHtml);
     }
 }

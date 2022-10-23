@@ -10,7 +10,7 @@ namespace Command.Document;
 public class Document : IDocument
 {
     private readonly List<IItem> _items = new();
-    private string _title = "Title";
+    private string _title = string.Empty;
     public string Title
     {
         get => _title;
@@ -57,17 +57,7 @@ public class Document : IDocument
             pos = ItemCount;
         }
 
-        string tempFileName = Path.GetTempFileName();
-        try
-        {
-            File.Copy(path, tempFileName, true);
-        }
-        catch (Exception ex)
-        {
-            throw new ApplicationException($"File {path} copying is not possible. {ex.Message}");
-        }
-
-        IImage image = new Image(tempFileName, Path.GetExtension(path), width, height);
+        IImage image = CreateImage(path, width, height);
         _items.Insert((int)pos, image);
 
         ICommand command = new InsertImageCommand(this, path, pos, width, height);
@@ -93,32 +83,40 @@ public class Document : IDocument
         History.Redo();
     }
 
+    public void Undo()
+    {
+        History.Undo();
+    }
+
     public void Save(string path)
     {
-        path = path.Replace('\\', '/');
-        if (!path.Contains('/'))
+        ToCorrectPath(ref path);
+        string html = GenerateHtml(path);
+        SaveFile(html, path);
+    }
+
+    private static IImage CreateImage(string path, int width, int height)
+    {
+        string tempFileName = Path.GetTempFileName();
+        try
         {
-            path = $"temp\\{path}";
+            File.Copy(path, tempFileName, true);
         }
-        StringBuilder stringBuilder = new();
-        stringBuilder.Append("<!DOCTYPE html>")
-            .Append("<html>")
-            .Append($"<head><meta charset=\"utf-8\"><title>{HttpUtility.HtmlDecode(Title)}</title></head>")
-            .Append("<body>");
-
-        foreach (var item in _items)
+        catch (Exception ex)
         {
-            stringBuilder.Append(item.ToHtml(path));
+            throw new ApplicationException($"File {path} copying is not possible. {ex.Message}");
         }
 
-        stringBuilder.Append("</body>")
-            .Append("</html>");
+        return new Image(tempFileName, Path.GetExtension(path), width, height);
+    }
 
+    private static void SaveFile(string value, string path)
+    {
         try
         {
             using (var sw = new StreamWriter(path))
             {
-                sw.Write(stringBuilder.ToString());
+                sw.Write(value);
             }
         }
         catch (Exception ex)
@@ -127,16 +125,71 @@ public class Document : IDocument
         }
     }
 
-    public void Undo()
+    private string GenerateHtml(string path)
     {
-        History.Undo();
+        StringBuilder stringBuilder = new();
+        stringBuilder.Append("<!DOCTYPE html>")
+            .Append("<html>")
+            .Append($"<head><meta charset=\"utf-8\"><title>{HttpUtility.HtmlDecode(Title)}</title></head>")
+            .Append("<body>");
+
+        foreach (var item in _items)
+        {
+            if (item is IImage image)
+            {
+                string newPath = image.CopyTo(path);
+                stringBuilder.Append(item.ToHtml(newPath));
+            }
+            else
+            {
+                stringBuilder.Append(item.ToHtml());
+            }
+
+        }
+
+        stringBuilder.Append("</body>")
+            .Append("</html>");
+
+        return stringBuilder.ToString();
+    }
+
+    private static void ToCorrectPath(ref string path)
+    {
+        path = path.Replace('\\', '/');
+        if (!path.Contains('/'))
+        {
+            Directory.CreateDirectory("temp");
+            path = $"temp/{path}";
+        }
     }
 
     private void SetTitle(string value)
     {
-        _title = value;
-
         ICommand command = new SetTitleCommand(this, value);
         History.Add(command);
+
+        _title = value;
+    }
+}
+
+static class DocumentUtil
+{
+    const string _referencePath = "images/";
+
+    internal static string CopyTo(this IImage image, string from)
+    {
+        string fullPath = Path.GetDirectoryName(from) + $"/{_referencePath}";
+        string newImageName = Guid.NewGuid().ToString() + image.FileExtension;
+        try
+        {
+            Directory.CreateDirectory(fullPath);
+            File.Copy(image.Path, fullPath + newImageName, overwrite: true);
+        }
+        catch (Exception ex)
+        {
+            throw new ApplicationException($"File cant by copy: {ex.Message}");
+        }
+
+        return _referencePath + newImageName;
     }
 }

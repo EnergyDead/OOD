@@ -23,7 +23,7 @@ internal class Application
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"{ex.Message}. Print <Help> to show commands info");
             }
         }
     }

@@ -8,8 +8,8 @@ namespace Command.Command;
 public class DeleteItemCommand : ICommand
 {
     private readonly IDocument _doc;
+    private readonly uint _pos;
     IItem? _deletedItem;
-    private uint _pos;
 
     public DeleteItemCommand(IDocument doc, uint pos)
     {

@@ -1,4 +1,4 @@
-﻿    using Command.Command;
+﻿using Command.Command;
 using Command.Document;
 using Command.Util;
 using System.Text;
@@ -21,6 +21,7 @@ public static class MenuBilder
         menu.AddNode("InsertImage", "Print <InsertImage> <position|end> <weight> <height> <path> to insert image to document", menuSetup.InsertImageCommandExecutor);
         menu.AddNode("ResizeImage", "Print <ResizeImage> <position> <weight> <height> to resize image", menuSetup.ResizeImageCommandExecutor);
         menu.AddNode("DeleteItem", "Print <DeleteItem> <position> to delete item on position", menuSetup.DeleteItemCommandExecutor);
+        menu.AddNode("Exit", "Print <Exit> to close program", _ => { });
 
         return menu;
     }
@@ -37,7 +38,7 @@ class Setup
     internal void ListCommandExecutor(string cmdParams)
     {
         if (cmdParams.Contains(' ')) throw new ApplicationException("Incorrect command. Type <Help> to help");
-        StringBuilder stringBuilder = new($"Title: {_doc.Title}");
+        StringBuilder stringBuilder = new($"Title: {_doc.Title}\n\r");
         for (uint i = 0; i < _doc.ItemCount; i++)
         {
             stringBuilder.AppendLine($"{_doc.GetItem(i)}");
@@ -69,7 +70,7 @@ class Setup
         {
             throw new ApplicationException();
         }
-        uint? pos = parser.GetNextAsUint(); // add <end>
+        uint? pos = parser.GetNextAsUint();
         int w = parser.GetNextAsInt();
         int h = parser.GetNextAsInt();
         string path = parser.GetNextAsString();
@@ -82,7 +83,7 @@ class Setup
         ArgumentParser parser = new(cmdParams);
         if (parser.ArgCount < 2) throw new ApplicationException();
 
-        uint? pos = parser.GetNextAsUint(); // todo: add exeption <end>
+        uint? pos = parser.GetNextAsUint();
         string text = parser.GetNextsAsString();
 
         ICommand command = new InsertParagraphCommand(_doc, pos, text);
@@ -103,9 +104,13 @@ class Setup
         {
             throw new ApplicationException();
         }
-        uint pos = parser.GetNextAsUint();
+        uint? pos = parser.GetNextAsUint();
+        if (!pos.HasValue)
+        {
+            throw new ApplicationException();
+        }
         string text = parser.GetNextsAsString();
-        ICommand command = new ReplaceTextCommand(_doc, pos, text);
+        ICommand command = new ReplaceTextCommand(_doc, pos.Value, text);
         command.Execute();
     }
 
@@ -116,10 +121,14 @@ class Setup
         {
             throw new ArithmeticException();
         }
-        uint pos = parser.GetNextAsUint();
+        uint? pos = parser.GetNextAsUint();
+        if (!pos.HasValue)
+        {
+            throw new ApplicationException();
+        }
         int w = parser.GetNextAsInt();
         int h = parser.GetNextAsInt();
-        ICommand command = new ResizeImageCommand(_doc, pos, w, h);
+        ICommand command = new ResizeImageCommand(_doc, pos.Value, w, h);
         command.Execute();
     }
 
@@ -142,7 +151,7 @@ class Setup
 
     internal void UndoCommandExecutor(string cmdParams)
     {
-        if (cmdParams.Contains(' ')) throw new ApplicationException("Incorrect command. Type <Help> to help");
+        if (cmdParams.Contains(' ')) throw new ApplicationException();
 
         _doc.Undo();
     }

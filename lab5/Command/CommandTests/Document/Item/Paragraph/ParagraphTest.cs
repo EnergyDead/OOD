@@ -46,6 +46,6 @@ public class ParagraphTest
         string paragraphHtml = item.ToHtml();
 
         // Assert
-        Assert.Equal(paragraphHtml, expectedHtml);
+        Assert.Equal(expectedHtml, paragraphHtml);
     }
 }

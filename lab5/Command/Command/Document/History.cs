@@ -4,7 +4,7 @@ namespace Command.Document;
 
 public class History : IHistory
 {
-    const int _maxCommandsQuantity = 10;
+    private const int _maxCommandsQuantity = 10;
     private readonly List<ICommand> _commands = new();
     private readonly List<ICommand> _cancelledCommands = new();
     private bool _isLocked = false;
@@ -73,7 +73,7 @@ public class History : IHistory
     }
 }
 
-static class Util
+static class HistoryUtil
 {
     internal static void RemoveLast(this List<ICommand> commands)
     {

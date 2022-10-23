@@ -37,8 +37,9 @@ internal class ArgumentParser
         return int.Parse(GetNextAsString());
     }
 
-    public uint GetNextAsUint()
+    public uint? GetNextAsUint()
     {
-        return uint.Parse(GetNextAsString());
+        string arg = GetNextAsString();
+        return arg == "end" ? null : uint.Parse(arg);
     }
 }

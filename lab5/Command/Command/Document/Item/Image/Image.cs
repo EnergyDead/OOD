@@ -4,7 +4,6 @@ public class Image : IImage
 {
     const int _maxWidth = 10000;
     const int _maxHeight = 10000;
-    const string _referencePath = "Images/";
 
     public Image(string tempFileName, string fileExtrension, int width, int height)
     {
@@ -28,19 +27,7 @@ public class Image : IImage
 
     public string ToHtml(string? path = null)
     {
-        string fullPath = System.IO.Path.GetDirectoryName(path) + $"/{_referencePath}";
-        string newImageName = Guid.NewGuid().ToString() + FileExtension;
-        try
-        {
-           Directory.CreateDirectory(fullPath);
-           File.Copy(Path, fullPath + newImageName, overwrite: true);
-        }
-        catch (Exception ex)
-        {
-            throw new ApplicationException($"File cant by copy: {ex.Message}");
-        }
-
-        return $"<img src=\"{_referencePath + newImageName}\" width=\"{Width}\" height=\"{Height}\">";
+        return $"<img src=\"{path}\" width=\"{Width}\" height=\"{Height}\">";
     }
 
     public override string ToString()

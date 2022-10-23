@@ -185,7 +185,7 @@ public class DocumentTest
     public void Save_SaveImageHasReferencePath()
     {
         // Arrange
-        string expectedImagePathBegining = "Images/";
+        string expectedImagePathBegining = "images/";
         _document.InsertImage(Path.GetTempFileName(), 1, 1);
         string path = Path.Combine(Path.GetTempPath(), "1.html");
 
