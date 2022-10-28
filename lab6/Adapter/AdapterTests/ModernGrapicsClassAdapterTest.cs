@@ -60,7 +60,7 @@ public class ModernGrapicsClassAdapterTest
     [Fact]
     public void SetColor_DrawSetColor()
     {// Arrange
-        string expected = "  <color r=\"170\" g=\"170\" b=\"170\" a=\"0\" />";
+        string expected = "  <color r=\"1\" g=\"0\" b=\"1\" a=\"1\" />";
         List<string> writtenLines = new();
 
         Mock<TextWriter> mock = new();
@@ -70,7 +70,7 @@ public class ModernGrapicsClassAdapterTest
 
         // Act
         modernGrapics.BeginDraw();
-        modernGrapics.SetColor(0xAAAAAA);
+        modernGrapics.SetColor(0xFF00FF);
         modernGrapics.LineTo(1, 1);
         modernGrapics.EndDraw();
 

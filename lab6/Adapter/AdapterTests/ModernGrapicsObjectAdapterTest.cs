@@ -85,7 +85,7 @@ public class ModernGrapicsObjectAdapterTest
     public void SetColor_DrawSetColor()
     {
         // Arrange
-        string expected = "  <color r=\"170\" g=\"170\" b=\"170\" a=\"0\" />";
+        string expected = "  <color r=\"1\" g=\"0\" b=\"1\" a=\"1\" />";
         List<string> writtenLines = new();
 
         Mock<TextWriter> mock = new();
@@ -96,7 +96,7 @@ public class ModernGrapicsObjectAdapterTest
 
         // Act
         modernGrapicsObjectAdapter.BeginDraw();
-        modernGrapicsObjectAdapter.SetColor(0xAAAAAA);
+        modernGrapicsObjectAdapter.SetColor(0xFF00FF);
         modernGrapicsObjectAdapter.LineTo(1, 1);
         modernGrapicsObjectAdapter.EndDraw();
 

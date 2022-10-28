@@ -23,7 +23,7 @@ public class ModernGraphicsRenderer : IDisposable
         _drawing = true;
     }
 
-    public void DrawLine(Point start, Point end, Color color)
+    public void DrawLine(Point start, Point end, RGBAColor color)
     {
         if (!_drawing)
         {

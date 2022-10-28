@@ -9,7 +9,7 @@ public class ModernGrapicsObjectAdapter : ICanvas
 {
     private readonly ModernGraphicsRenderer _renderer;
     private Point _startPoint = new(0, 0);
-    private Color _color = Color.FromArgb(0, 0, 0, 0);
+    private RGBAColor _color = new(0, 0, 0, 0);
 
     public ModernGrapicsObjectAdapter(ModernGraphicsRenderer renderer)
     {
@@ -30,7 +30,8 @@ public class ModernGrapicsObjectAdapter : ICanvas
 
     public void SetColor(uint rgbColor)
     {
-        _color = Color.FromArgb((int)rgbColor);
+        var color = Color.FromArgb((int)rgbColor);
+        _color = new RGBAColor(color.R.ToFloat(), color.G.ToFloat(), color.B.ToFloat(), 1);
     }
 
     public void BeginDraw()
