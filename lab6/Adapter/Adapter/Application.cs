@@ -22,9 +22,10 @@ internal static class Application
         ModernGrapicsObjectAdapter objectAdapter = new (renderer);
         CanvasPainter painter = new(objectAdapter);
 
-        objectAdapter.BeginDraw();
+        // todo использовать у ModernGraphicsRenderer
+        renderer.BeginDraw();
         PaintPicture(painter);
-        objectAdapter.EndDraw();
+        renderer.EndDraw();
     }
 
     public static void PaintPictureOnModernGraphicsRendererWithClassAdapter()

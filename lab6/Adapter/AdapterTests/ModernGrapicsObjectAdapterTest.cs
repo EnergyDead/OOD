@@ -24,9 +24,9 @@ public class ModernGrapicsObjectAdapterTest
         var modernGrapics = new ModernGrapicsObjectAdapter(rendererMock.Object);
 
         // Act
-        modernGrapics.BeginDraw();
+        rendererMock.Object.BeginDraw();
         modernGrapics.LineTo(1, 1);
-        modernGrapics.EndDraw();
+        rendererMock.Object.EndDraw();
 
         // Assert
         Assert.Equal(expected.Length, writtenLines.Count);
@@ -50,7 +50,7 @@ public class ModernGrapicsObjectAdapterTest
         var modernGrapicsObjectAdapter = new ModernGrapicsObjectAdapter(rendererMock.Object);
 
         // Act
-        modernGrapicsObjectAdapter.BeginDraw();
+        rendererMock.Object.BeginDraw();
         rendererMock.Object.Dispose();
 
         // Assert
@@ -71,10 +71,10 @@ public class ModernGrapicsObjectAdapterTest
         var modernGrapicsObjectAdapter = new ModernGrapicsObjectAdapter(rendererMock.Object);
 
         // Act
-        modernGrapicsObjectAdapter.BeginDraw();
+        rendererMock.Object.BeginDraw();
         modernGrapicsObjectAdapter.MoveTo(5, 5);
         modernGrapicsObjectAdapter.LineTo(1, 1);
-        modernGrapicsObjectAdapter.EndDraw();
+        rendererMock.Object.EndDraw();
 
         // Assert
         Assert.Equal(5, writtenLines.Count);
@@ -95,10 +95,10 @@ public class ModernGrapicsObjectAdapterTest
         var modernGrapicsObjectAdapter = new ModernGrapicsObjectAdapter(rendererMock.Object);
 
         // Act
-        modernGrapicsObjectAdapter.BeginDraw();
+        rendererMock.Object.BeginDraw();
         modernGrapicsObjectAdapter.SetColor(0xFF00FF);
         modernGrapicsObjectAdapter.LineTo(1, 1);
-        modernGrapicsObjectAdapter.EndDraw();
+        rendererMock.Object.EndDraw();
 
         // Assert
         Assert.Equal(5, writtenLines.Count);

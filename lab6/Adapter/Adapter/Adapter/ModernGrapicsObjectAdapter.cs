@@ -33,14 +33,4 @@ public class ModernGrapicsObjectAdapter : ICanvas
         var color = Color.FromArgb((int)rgbColor);
         _color = new RGBAColor(color.R.ToFloat(), color.G.ToFloat(), color.B.ToFloat(), 1);
     }
-
-    public void BeginDraw()
-    {
-        _renderer.BeginDraw();
-    }
-
-    public void EndDraw()
-    {
-        _renderer.EndDraw();
-    }
 }
